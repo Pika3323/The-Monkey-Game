@@ -13,7 +13,7 @@ void main(void) {
         texblur += texture2D(bgl_RenderedTexture, vec2(gl_TexCoord[0].x+(i*blur), gl_TexCoord[0].y-(i*blur))).rgb/NSAMPLES;       
         };              
     vec3 lum = texblur;
-    lum -= 1.4;
+    lum -= 2.0;
     lum *= lum*lum;
     vec3 stencil = max(lum , 0.0);           
        
