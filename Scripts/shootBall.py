@@ -5,10 +5,11 @@ scene = bge.logic.getCurrentScene()
 own = cont.owner
 player = cont.owner
 p_loc = player.worldPosition
-spawn_loc = player.children['Spot'].worldPosition
 sphere_cnt = 1
+nm = player.name
+light_name = nm + ".Spot"
+light = player.children[light_name]
 sphere_n = 'Sphere' + str(sphere_cnt)
-scene.addObject("Sphere", "Spot", 0)
-scene.objects["Sphere"].localAngularVelocity = [0, -5, 0]
+new_ball = scene.addObject("Sphere", light, 1000)
+new_ball.localLinearVelocity = (0, 0, -50)
 sphere_cnt += 1
-print(scene.objects)
