@@ -9,7 +9,6 @@ yC = 1
 x = own.worldPosition.x
 y = own.worldPosition.z
 dc = "Color_White"
-print(own.worldPosition)
 def main():
     global xC
     global yC
@@ -17,6 +16,7 @@ def main():
     global y
     global dc
     key = cont.sensors['Keyboard'].events
+    print(key)
     if key ==[[100,1]]:
         if xC < 4:
             nX = x + 1.42056
@@ -43,8 +43,8 @@ def main():
             yC = yC + 1
     else:
         pass
-    print(colours.colour[xC - 1][yC - 1])
-    print("Y: " + str(yC))
+    on = own.name
+    lt = own.name[-2:]
     nc = colours.colour[xC - 1][yC - 1]
-    scene.objects['Suzanne_Color_White'].replaceMesh('Suzanne_' + nc, True, False)
+    scene.objects['Suzanne' + lt].replaceMesh('Suzanne_' + nc, True, False)
     dc = nc
