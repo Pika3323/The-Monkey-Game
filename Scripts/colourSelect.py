@@ -20,32 +20,32 @@ def main():
         if xC < 4:
             print(xC)
             nX = x + 1.42056
-            own.worldPosition = (nX , -0.6194, 2.15762)
+            own.worldPosition.x = nX
             x = own.worldPosition.x
             xC = xC + 1
     elif key ==[[97,1]]:
         if xC > 1:
             print(xC)
             nX = x - 1.42056
-            own.worldPosition = (nX , -0.6194, 2.15762)
+            own.worldPosition.x = nX 
             x = own.worldPosition.x
             xC = xC - 1
     elif key ==[[119,1]]:
         if yC > 1:
             print(yC)
             nY = y + 1.42056
-            own.worldPosition = (x , -0.6194, nY)
+            own.worldPosition.z = nY
             y = own.worldPosition.z
             yC = yC - 1
     elif key ==[[115,1]]:
         if yC < 4:
             print(yC)
             nY = y - 1.42056
-            own.worldPosition = (x , -0.6194, nY)
+            print(nY)
+            own.worldPosition.z = nY
             y = own.worldPosition.z
+            print(y)
             yC = yC + 1
     else:
         pass
     
-    own.worldPosition.z = y * yC
-    print(own.worldPosition)
