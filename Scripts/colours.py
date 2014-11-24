@@ -17,3 +17,4 @@ colour[2][3] = "Color_Magenta"
 colour[3][3] = "Color_Pink"
 p1Colour = "Color_White"
 p2Colour = "Color_White"
+p2Active = False

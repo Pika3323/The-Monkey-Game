@@ -16,6 +16,7 @@ x2 = p2.worldPosition.x
 y2 = p2.worldPosition.z
 dc = "Color_White"
 dc2 = "Color_White"
+p2Active = False
 def p1f():
     global xC
     global yC
@@ -59,47 +60,52 @@ def p2f():
     global y2
     global dc2
     key2 = p2.sensors['Keyboard'].events
-    if key2 ==[[145,1]]:
-        if xC2 < 4:
-            nX2 = x2 + 1.42056
-            p2.worldPosition.x = nX2
-            x2 = p2.worldPosition.x
-            xC2 = xC2 + 1
-    elif key2 ==[[143,1]]:
-        if xC2 > 1:
-            nX2 = x2 - 1.42056
-            p2.worldPosition.x = nX2 
-            x2 = p2.worldPosition.x
-            xC2 = xC2 - 1
-    elif key2 ==[[146,1]]:
-        if yC2 > 1:
-            nY2 = y2 + 1.42056
-            p2.worldPosition.z = nY2
-            y2 = p2.worldPosition.z
-            yC2 = yC2 - 1
-    elif key2 ==[[144,1]]:
-        if yC2 < 4:
-            nY2 = y2 - 1.42056
-            p2.worldPosition.z = nY2
-            y2 = p2.worldPosition.z
-            yC2 = yC2 + 1
+    if p2Active == True:
+        if key2 ==[[145,1]]:
+            if xC2 < 4:
+                nX2 = x2 + 1.42056
+                p2.worldPosition.x = nX2
+                x2 = p2.worldPosition.x
+                xC2 = xC2 + 1
+        elif key2 ==[[143,1]]:
+            if xC2 > 1:
+                nX2 = x2 - 1.42056
+                p2.worldPosition.x = nX2 
+                x2 = p2.worldPosition.x
+                xC2 = xC2 - 1
+        elif key2 ==[[146,1]]:
+            if yC2 > 1:
+                nY2 = y2 + 1.42056
+                p2.worldPosition.z = nY2
+                y2 = p2.worldPosition.z
+                yC2 = yC2 - 1
+        elif key2 ==[[144,1]]:
+            if yC2 < 4:
+                nY2 = y2 - 1.42056
+                p2.worldPosition.z = nY2
+                y2 = p2.worldPosition.z
+                yC2 = yC2 + 1
+        else:
+            pass
+        nc2 = colours.colour[xC2 - 1][yC2 - 1]
+        scene.objects['Suzanne_2'].replaceMesh('Suzanne_' + nc2, True, False)
+        dc2 = nc2
     else:
         pass
-    nc2 = colours.colour[xC2 - 1][yC2 - 1]
-    scene.objects['Suzanne_2'].replaceMesh('Suzanne_' + nc2, True, False)
-    dc2 = nc2
 def newP():
+    global p2Active
     contr = bge.logic.getCurrentController()
     ownr = contr.owner
     scene.objects['Suzanne_2'].visible = True
     scene.objects['Selector_2'].visible = True
     ownr.visible = False
+    p2Active = True
 def start():
     colours.p1Colour = dc
     colours.p2Colour = dc2
+    if p2Active == False:
+        colours.p2Active = False
+    else:
+        colours.p2Active = True
     scene.objects['MainCamera'].perspective = 1
     scene.replace('Main_Scene')
-def apply():
-    scene = bge.logic.getCurrentScene()
-    scene.objects['Suzanne'].replaceMesh('Suzanne_' + colours.p1Colour + '.001', True, True)
-    scene.objects['Suzanne.001'].replaceMesh('Suzanne_' + colours.p2Colour + '.001', True, True)
