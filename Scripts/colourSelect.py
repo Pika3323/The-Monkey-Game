@@ -94,4 +94,12 @@ def newP():
     scene.objects['Suzanne_2'].visible = True
     scene.objects['Selector_2'].visible = True
     ownr.visible = False
-    
+def start():
+    colours.p1Colour = dc
+    colours.p2Colour = dc2
+    scene.objects['MainCamera'].perspective = 1
+    scene.replace('Main_Scene')
+def apply():
+    scene = bge.logic.getCurrentScene()
+    scene.objects['Suzanne'].replaceMesh('Suzanne_' + colours.p1Colour + '.001', True, True)
+    scene.objects['Suzanne.001'].replaceMesh('Suzanne_' + colours.p2Colour + '.001', True, True)
